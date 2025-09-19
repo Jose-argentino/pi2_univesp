@@ -50,8 +50,6 @@
 
         <main>
 
-                <!-- Formulário de login -->
-            <!-- Envia para backend/login_process.php -->
             <form action="loja/php/login_process.php" method="POST">
                 <div class="form">
 
@@ -70,9 +68,9 @@
                     </div>
 
                     <!-- Link para recuperação de senha -->
-                    <a href="recuperar.php" class="recuperar-senha">Recuperar Senha</a>
+                    <a href="nova_senha.php" class="recuperar-senha">Recuperar Senha</a>
                 </div>
-    </form> 
+            </form> 
 
 
         </main>

@@ -24,7 +24,7 @@
             </div>
 
             <div id="navBarExterno">
-                <a href="index.html">
+                <a href="index.php">
                     <h4>Inicio</h4>
                 </a>
             </div>
