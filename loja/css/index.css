@@ -1,0 +1,147 @@
+#container {
+    gap: 5px;
+    /* min-width: 100vw;   largura mínima = 100% da largura da tela */
+    /*min-height: 80vh;  altura mínima = 80% da altura da tela */
+}
+
+header {
+    color: var(--background-color-6);
+}
+
+main{
+    background: var(--background-color-3);   
+}
+
+footer{
+    background: var(--background-color-3);
+}
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+*{
+    font-family: "Orbitron", sans-serif;
+}
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0C021B;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.logo img {
+    width: 259px;
+    height: 190px;
+    margin-bottom: 25px;
+}
+
+.description {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #ccc;
+}
+
+.form {
+    margin-top: 30px;
+}
+
+.form input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #00aaff;
+    border-radius: 20px;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.entrar {
+    background-color: #0C021B;
+    border: 2px solid #FF3B9D;
+    border-radius: 20px;
+    color: white;
+}
+
+.cadastrar {
+    background-color: #0C021B;
+    border: 2px solid #FF3B9D;
+    border-radius: 20px;
+    color: white;
+}
+
+.login {
+    background-color: #0C021B;
+    border: 2px solid #FF3B9D;
+    border-radius: 20px;
+    color: white;
+}
+
+.recuperar-senha {
+    margin-top: 25px;
+    display: block; /* Ensures the link is on a new line */
+    text-align: center; /* Centers the link */
+    color: #FF3B9D; /* Set the text color */
+    text-decoration: none; /* Removes the underline */
+    font-size: 16px; /* Sets the font size */
+    font-weight: bold; /* Makes the text bold */
+    cursor: pointer; /* Changes the cursor to pointer on hover */
+}
+
+/* Hover effect for the link */
+.recuperar-senha:hover {
+    text-decoration: underline; /* Underline the text on hover */
+}
+
+.erro{
+    color: red; 
+    font-size: 12px;   
+    margin-top: -10px; 
+}
+/* Media Queries para telas maiores */
+/*
+@media (min-width: 768px) {
+    .container {
+        padding: 0px;
+    }
+
+}
+*/
