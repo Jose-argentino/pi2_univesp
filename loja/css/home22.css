@@ -1,0 +1,27 @@
+#container {
+    gap: 5px;
+    /* min-width: 100vw;   largura mínima = 100% da largura da tela */
+    /*min-height: 80vh;  altura mínima = 80% da altura da tela */
+}
+
+header {
+    color: var(--background-color-6);
+}
+
+main{
+    background: var(--background-color-3);   
+}
+
+footer{
+    background: var(--background-color-3);
+}
+
+/* Media Queries para telas maiores */
+/*
+@media (min-width: 768px) {
+    .container {
+        padding: 0px;
+    }
+
+}
+*/

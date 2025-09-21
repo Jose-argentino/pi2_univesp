@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><!-- Arquivo CSS externo -->
     <link rel="stylesheet" href="css/geral.css">
     <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/cadastro_use.css">
     <link rel="stylesheet" href="css/footerExterno.css">
-    <title>
-        Home
-    </title>
+    <title>Cadastro de Usuário</title>
 </head>
 
 <body>
-    <div id="container">
-        <?php
+
+    <?php
         var_dump($_POST)
-        ?>
-        
+    ?>
+
     <header>
         <div id="logoPequena">
         <img class="logoPequenaImg" src="img/logo/logo_1.jpg" alt="">
@@ -36,28 +34,52 @@
                 <li><a href="#">Vendas</a></li>
                 <li><a href="#">Entradas</a></li>
                 <li><a href="#">Estoque</a></li>
-                <li><a href="cadastro_use.php">Cadastro Usuário</a></li>
+                <li><a href="cadastrouse.php">Cadastro Usuário</a></li>
             </ul>
             </nav>
         </div>
         
     </header>
 
-        <main>
-         <h2>teste main</h2>   
-        </main>
+    <main>
+        <h2>Cadastro de Usuário</h2>
+        <form action="php/processa_cadastro.php" method="POST">
+            <label>Nome:</label><br>
+            <input type="text" name="nome" maxlength="50" required><br><br>
 
-        <!-- java script -->
-        <script>
-            // Pega elementos
-            const toggle = document.querySelector(".menu-toggle");
-            const menu = document.getElementById("menu");
+            <label>Senha:</label><br>
+            <input type="password" name="senha" maxlength="50" required><br><br>
 
-            // Abre/fecha menu ao clicar no ícone
-            toggle.addEventListener("click", () => {
-            menu.classList.toggle("active");
-            });
-        </script>
+            <label>CPF:</label><br>
+            <input type="text" name="cpf" maxlength="20" required><br><br>
+
+            <label>Nível de Acesso:</label><br>
+            <input type="number" name="nivel_acesso" min="0" required><br><br>
+
+            <label>Email:</label><br>
+            <input type="email" name="email" maxlength="50" required><br><br>
+
+            <label>Telefone:</label><br>
+            <input type="text" name="telefone" maxlength="12"><br><br>
+
+            <label>Endereço:</label><br>
+            <textarea name="endereco"></textarea><br><br>
+
+            <label>Observações:</label><br>
+            <textarea name="obs"></textarea><br><br>
+
+            <label>Status:</label><br>
+            <select name="status">
+                <option value="1">Ativo</option>
+                <option value="0">Inativo</option>
+            </select><br><br>
+
+            <label>Cadastrado por:</label><br>
+            <input type="text" name="cadastrado_por" maxlength="50" required><br><br>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </main>
 
             <footer>
             <div class="ContatosEmpresa">
@@ -82,7 +104,5 @@
             <p>&copy; 2025 - Minha Empresa</p>
 
         </footer>
-
-    </div>
 </body>
 </html>
