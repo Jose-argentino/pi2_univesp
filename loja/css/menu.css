@@ -87,7 +87,7 @@ nav a {
     text-decoration: none;
 }
 
-/* Estilo responsivo  navbar*/
+/* Estilo responsivo*/
 @media (min-width: 700px) {
     #navBar{
         display: flex;
