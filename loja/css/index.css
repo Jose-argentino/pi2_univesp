@@ -30,6 +30,7 @@ main{
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    min-width: 25vh;
 }
 
 .entrar {
@@ -50,26 +51,17 @@ main{
     color: var(--cor-fonte-2);
 }
 
-footer{
-    background: var(--background-color-6);
-}
-
 /* Estilo responsivo*/
 @media (min-width: 700px){
-    .recuperar-senha {
-        cursor: pointer; 
-    }
-
     .recuperar-senha:hover {
+        cursor: pointer; 
         text-decoration: underline;
         color: var(--cor-fonte-1);
     }
 
-    .entrar{
+    .entrar:hover {
         cursor: pointer;
-    }
-    .entrar:haver {
-        font-size: 2rem;
+        font-size: 3rem;
         color:var(--cor-fonte-6);
     }
 }

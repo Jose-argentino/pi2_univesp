@@ -13,6 +13,9 @@
 
 <body>
     <div id="container">
+        <?php
+        var_dump()
+        ?>
         <header>
             <div id="logoPequena">
             <img class="logoPequenaImg" src="img/logo/logo_1.jpg" alt="">

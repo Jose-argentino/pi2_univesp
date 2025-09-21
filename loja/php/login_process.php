@@ -36,18 +36,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } else {
             // Senha ou usuário inválido → redireciona com erro
-            header("Location: ../../home.php?erro=" . urlencode("Dados inválidos"));
+            header("Location: ../../index.php?erro=" . urlencode("Dados inválidos"));
             exit;
         }
 
     } catch (PDOException $err) {
         // Erro de banco → redireciona com mensagem genérica
-        header("Location: ,,/../home.php?erro=" . urlencode("Erro no servidor"));
+        header("Location: ../../index.php?erro=" . urlencode("Erro no servidor"));
         exit;
     }
 
 } else {
     // Se o acesso não foi via POST, redireciona para login
-    header("Location: ../../home.php?erro=" . urlencode("Requisição inválida"));
+    header("Location: ../../index.php?erro=" . urlencode("Requisição inválida"));
     exit;
 }
