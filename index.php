@@ -55,13 +55,10 @@
                 <div class="form">
 
                     <!-- Campo de email -->
-                    <input type="text" name="email" id="email" placeholder="Usuário" required>
+                    <input type="email" name="email" id="email" placeholder="Usuário" required>
 
                     <!-- Campo de senha -->
                     <input type="password" name="senha" id="senha" placeholder="Senha" required>
-
-                    <!-- Área onde será exibida a mensagem de erro -->
-                    <p id="mensagem-erro" class="erro" style="display:none;"></p>
 
                     <div class="buttons">
                         <!-- Botão de login -->
@@ -69,7 +66,7 @@
                     </div>
 
                     <!-- Link para recuperação de senha -->
-                    <a href="nova_senha.php" class="recuperar-senha">Recuperar Senha</a>
+                    <!-- <a href="nova_senha.php" class="recuperar-senha">Recuperar Senha</a> -->
                 </div>
             </form> 
 
