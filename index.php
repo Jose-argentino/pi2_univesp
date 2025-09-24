@@ -51,6 +51,9 @@
 
         <main>
 
+            <div id="mensagem-erro" style="display:none; color:red; font-weight:bold; margin:10px 0;"></div>
+
+            
             <form action="loja/php/login_process.php" method="POST">
                 <div class="form">
 

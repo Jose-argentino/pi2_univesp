@@ -15,9 +15,6 @@
 
 <body>
     <div id="container">
-        <?php
-        var_dump($_POST)
-        ?>
         
     <header>
         <div id="logoPequena">

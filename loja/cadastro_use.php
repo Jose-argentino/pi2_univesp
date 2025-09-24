@@ -45,10 +45,10 @@
         <h2>Cadastro de Usuário</h2>
         <form action="php/processa_cadastro.php" method="POST">
             <label>Nome:</label><br>
-            <input type="text" name="nome" maxlength="50" required><br><br>
+            <input type="text" name="nome"  required><br><br>
 
             <label>Senha:</label><br>
-            <input type="password" name="senha" maxlength="50" required><br><br>
+            <input type="password" name="senha"  required><br><br>
 
             <label>CPF:</label><br>
             <input type="text" name="cpf" maxlength="20" required><br><br>
