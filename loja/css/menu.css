@@ -1,37 +1,68 @@
 /* header */
 header {
-    display: flex;
-    justify-content:space-around;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-
 
 /* logo */
-#logoPequena{
-    margin: 2px;
+#logoPequena {
+  margin: 2px;
 }
 
-.logoPequenaImg{
-    max-width: 10vh;
+.logoPequenaImg {
+  max-width: 10vh;
 }
-
 
 /* nome da loja e frase */
-#nome{
-    display: flex;    
-    flex-direction: column;
-    align-items: center;
+#nome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#nome h1{
-    margin: 0;
-    font-size: 1.3rem;
-    color: var(--cor-fonte-1);
+#nome h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--cor-fonte-1);
 }
 
-#nome h4{
-    font-size: 0.7rem;
-    color: var(--cor-fonte-2);
+#nome h4 {
+  font-size: 0.7rem;
+  color: var(--cor-fonte-2);
+}
+
+/* Ícone hambúrguer (somente mobile) */
+.menu-toggle {
+  display: block;
+  color: var(--cor-fonte-1);
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Menu principal */
+#menu {
+  display: none; /* escondido inicialmente (modo celular) */
+  width: 100%;
+  background: var(--background-color-4);
+}
+
+#menu.active {
+  display: block; /* aparece ao clicar no ícone */
+}
+
+#menu ul {
+  flex-direction: column;
+  padding: 10px;
+}
+
+#menu ul li {
+  margin: 10px 0;
+}
+
+#menu ul li a {
+  color: var(--cor-fonte-6);
+  text-decoration: none;
 }
 
 /* navbar do menu externo - texto*/
@@ -55,61 +86,35 @@ header {
     display: block;
 }
 
-/* navbar interno - Ícone em forma de hambúrguer */
-.menu-toggle {
-    display: block; /* mostra o ícone */
-    color: var(--cor-fonte-1); /* cor do ícone */
-    font-size: 30px; /* se quiser aumentar o tamanho */
-    cursor: pointer;
-}
-
-nav {
-display: none; /* esconde menu inicialmente */
-width: 100%;
-background: var(--background-color-4);
-}
-
-nav.active {
-display: block; /* mostra quando ativo */
-}
-
-nav ul {
-flex-direction: column;
-padding: 10px;
-}
-
-nav ul li {
-margin: 10px 0;
-}
-
-nav a {
-    color: var(--cor-fonte-6);
-    text-decoration: none;
-}
-
-/* Estilo responsivo*/
+/* --------- MODO DESKTOP --------- */
 @media (min-width: 700px) {
-    #navBar{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--cor-fonte-1);
-        background: var(--background-color-4);
-    }
+  #menu {
+    display: block; /* <== ESSA LINHA É A MAIS IMPORTANTE */
+  }
 
-    .menu-toggle {
-        font-size: 24px;
-        cursor: pointer;
-        display: none; /* só aparece no mobile */
-    }
+  /* esconde o ícone hambúrguer */
+  #navBar i {
+    display: none;
+  }
 
-    nav ul {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-        margin: 0;
-        padding: 0;
-    }
+  /* organiza o menu na horizontal */
+  #menu ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    background: var(--background-color-6);
+    padding: 10px;
+    list-style: none;
+  }
 
-    
+  #menu ul li {
+    margin: 0;
+  }
+
+  #menu ul li a {
+    color: var(--cor-fonte-1);
+    text-decoration: none;
+    font-size: 1rem;
+  }
 }
