@@ -15,5 +15,8 @@
             <li><a href="#">Entradas</a></li>
             <li><a href="#">Estoque</a></li>
             <li><a href="cadastro_use.php">Cadastro Usuário</a></li>
+            <li><a href="../logout.php">Sair</a></li>
+
+
         </ul>
     </nav>
