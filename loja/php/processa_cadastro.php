@@ -1,7 +1,7 @@
 <?php
 
     // Inclui conexão com banco de dados
-    include "conexao.php";
+    include "partes/conexao.php";
 
     try {
         // Cria a conexão usando PDO

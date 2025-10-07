@@ -3,7 +3,7 @@
 session_start();
 
 // Inclui conexão com banco de dados
-include "conexao.php";
+include "partes/conexao.php";
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

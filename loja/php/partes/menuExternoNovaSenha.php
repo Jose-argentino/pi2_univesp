@@ -8,10 +8,7 @@
 </div>
 
 <div id="navBarExterno">
-    <a href="nova_senha.php">
-        <h4> 
-            <span>Redefinir</span>
-            <span>Senha</span>
-        </h4>
+    <a href="index.php">
+        <h4>Inicio</h4>
     </a>
 </div>
