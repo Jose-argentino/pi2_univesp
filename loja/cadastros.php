@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><!-- Arquivo CSS externo -->
     <link rel="stylesheet" href="css/geral.css">
     <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/cadastro_use.css">
+    <link rel="stylesheet" href="css/cadastros.css">
     <link rel="stylesheet" href="css/footerExterno.css">
-    <title>Cadastro de Usuário</title>
+    <title>Cadastros</title>
 </head>
 
 <body>
@@ -23,11 +23,19 @@
             <?php 
                 include "php/partes/menuInterno.php"
             ?>
-
         </header>
 
         <main>
-            <h2>Cadastros</h2>
+            <div class="cadrasto">
+                <button class="btnLink"><a href="cadastroUse.php">Usuário</a></button>
+                <button class="btnLink"><a href="">Fornecedor</a></button>
+                <button class="btnLink"><a href="">Part Number</a></button>
+                <button class="btnLink"><a href="">Estoque</a></button>
+                <button class="btnLink"><a href="">Categoria</a></button>
+                <button class="btnLink"><a href="">Acesso</a></button>
+
+            </div>
+
         </main>
 
         <footer>
