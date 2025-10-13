@@ -2,6 +2,13 @@
     gap: 2px;
 }
 
+#mensagem-erro{
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--cor-fonte-7);
+    text-align: center;
+}
+
 header {
     background: var(--background-color-6);
 }

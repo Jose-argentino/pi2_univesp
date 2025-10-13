@@ -21,7 +21,7 @@
         </header>
 
         <main>
- 
+            <h1>aqui tem de por uma api para emviar um email de recuperação</h1>
         </main>
 
         <footer>

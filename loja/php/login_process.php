@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } else {
             // Usuário não existe ou senha incorreta
-            header("Location: ../../index.php?erro=" . urlencode("Dados inválidos"));
+            header("Location: ../../index.php?erro=" . urlencode("Dados inválidos, verifique usuário e senha!"));
             exit;
         }
 

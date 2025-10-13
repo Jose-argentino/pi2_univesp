@@ -10,7 +10,7 @@ if (
     !isset($_SESSION['nivel_acesso'])
 ) {
     // Redireciona se não estiver logado corretamente
-    header("Location: ../index.php?erro=" . urlencode("Acesso não autorizado"));
+    header("Location: ../index.php?erro=" . urlencode("Acesso não autorizado, realize o Login."));
     exit;
 }
 ?>
