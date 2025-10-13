@@ -26,8 +26,8 @@
 
     <main>
         <h2>Cadastro de Usuário</h2>
-        
-        <form action="php/processa_cadastro.php" method="POST">
+
+        <form id="form" action="php/processa_cadastro.php" method="POST">
             <label>Nome:</label><br>
             <input type="text" name="nome"  required><br><br>
 
@@ -53,15 +53,12 @@
             <textarea name="obs"></textarea><br><br>
 
             <label>Status:</label><br>
-            <select name="status">
+            <select name="status_usuario">
                 <option value="1">Ativo</option>
                 <option value="0">Inativo</option>
             </select><br><br>
 
-            <label>Cadastrado por:</label><br>
-            <input type="text" name="cadastrado_por" maxlength="50" required><br><br>
-
-            <button type="submit">Cadastrar</button>
+            <button class="btnCadastrar" type="submit">Cadastrar</button>
         </form>
     </main>
 

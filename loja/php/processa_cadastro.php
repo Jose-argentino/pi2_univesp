@@ -28,8 +28,8 @@
         $telefone       = $_POST['telefone'];
         $endereco       = $_POST['endereco'];
         $obs            = $_POST['obs'];
-        $status         = $_POST['status'];
-        $cadastrado_por = $_POST['cadastrado_por'];
+        $status_usuario = $_POST['status_usuario'];
+        
 
         // =========================
         // QUERY DE INSERÇÃO
@@ -37,9 +37,9 @@
         // Usamos parâmetros nomeados (:nome, :senha, etc) para evitar SQL Injection
 
         $sql = "INSERT INTO tb_usuario 
-            (nome, senha, cpf, nivel_acesso, email, telefone, endereco, obs, status, cadastrado_por) 
+            (nome, senha, cpf, nivel_acesso, email, telefone, endereco, obs, status_usuario) 
             VALUES 
-            (:nome, :senha, :cpf, :nivel_acesso, :email, :telefone, :endereco, :obs, :status, :cadastrado_por)";
+            (:nome, :senha, :cpf, :nivel_acesso, :email, :telefone, :endereco, :obs, :status_usuario)";
 
         // Prepara a query (evita SQL injection e melhora desempenho)
         $stmt = $pdo->prepare($sql);
@@ -53,19 +53,22 @@
         $stmt->bindParam(':telefone', $telefone);
         $stmt->bindParam(':endereco', $endereco);
         $stmt->bindParam(':obs', $obs);
-        $stmt->bindParam(':status', $status);
-        $stmt->bindParam(':cadastrado_por', $cadastrado_por);
+        $stmt->bindParam(':status_usuario', $status_usuario);
+    
 
-        // =========================
-        // EXECUTANDO A QUERY
-        // =========================
         if ($stmt->execute()) {
-            // Se der certo, mostra mensagem de sucesso
-            echo "Usuário cadastrado com sucesso!";
+            // Exibe mensagem e redireciona com JavaScript
+            echo "<script>
+                alert('Usuário cadastrado com sucesso!');
+                window.location.href = '../cadastroUse.php';
+            </script>";
         } else {
-            // Se der erro, mostra mensagem de falha
-            echo "Erro ao cadastrar usuário!";
+            echo "<script>
+                alert('Erro ao cadastrar usuário!');
+                window.location.href = '../cadastroUse.php';
+            </script>";
         }
+
 
     } catch (PDOException $e) {
         // Caso aconteça algum erro na conexão ou execução, captura a exceção
