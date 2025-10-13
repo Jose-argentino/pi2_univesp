@@ -11,11 +11,12 @@
     <i class="fas fa-bars menu-toggle"></i> <!-- Ícone hambúrguer -->
     <nav id="menu">
         <ul>
+            <li><a href="home.php">Inicio</a></li>
             <li><a href="#">Vendas</a></li>
             <li><a href="#">Entradas</a></li>
             <li><a href="#">Estoque</a></li>
-            <li><a href="cadastro_use.php">Cadastro Usuário</a></li>
-            <li><a href="../logout.php">Sair</a></li>
+            <li><a href="cadastros.php">Cadastros</a></li>
+            <li><a href="php/logout.php">Sair</a></li>
 
 
         </ul>

@@ -1,3 +1,8 @@
+<?php
+    include "php/partes/validaSession.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,32 +18,11 @@
 
 <body>
 
-    <?php
-        var_dump($_POST)
-    ?>
-
     <header>
-        <div id="logoPequena">
-        <img class="logoPequenaImg" src="img/logo/logo_1.jpg" alt="">
-        </div>
+        <?php 
+            include "php/partes/menuInterno.php"
+        ?>
 
-        <div id="nome">
-            <h1>Nome da Loja</h1>
-            <h4>P ao Plus Size</h4>
-        </div>
-
-        <div id="navBar">
-            <i class="fas fa-bars menu-toggle"></i> <!-- Ícone hambúrguer -->
-            <nav id="menu">
-            <ul>
-                <li><a href="#">Vendas</a></li>
-                <li><a href="#">Entradas</a></li>
-                <li><a href="#">Estoque</a></li>
-                <li><a href="cadastrouse.php">Cadastro Usuário</a></li>
-            </ul>
-            </nav>
-        </div>
-        
     </header>
 
     <main>
