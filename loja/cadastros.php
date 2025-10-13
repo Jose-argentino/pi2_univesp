@@ -17,16 +17,25 @@
 </head>
 
 <body>
+    <div id="container">
 
-    <header>
-        <?php 
-            include "php/partes/menuInterno.php"
-        ?>
+        <header>
+            <?php 
+                include "php/partes/menuInterno.php"
+            ?>
 
-    </header>
+        </header>
 
-    <main>
-        <h2>Cadastro de Usuário</h2>
-    </main>
+        <main>
+            <h2>Cadastros</h2>
+        </main>
 
-    
+        <footer>
+            <?php
+                include "php/partes/footerInterno.php";
+            ?>
+        </footer>
+
+    </div>
+</body>
+</html>  
