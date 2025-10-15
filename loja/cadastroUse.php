@@ -1,5 +1,6 @@
 <?php
     include "php/partes/validaSession.php";
+    include "php/partes/conexao.php";
 ?>
 
 
@@ -38,7 +39,22 @@
             <input type="text" name="cpf" maxlength="20" required><br><br>
 
             <label>Nível de Acesso:</label><br>
-            <input type="number" name="nivel_acesso" min="0" required><br><br>
+            <select name="nivel_acesso" required>
+                <option value="">Selecione um nível</option>
+                <?php
+                    // Consulta para buscar os níveis de acesso disponíveis
+                    $sql = "SELECT id, niv_acesso FROM tb_acesso";
+                    $resultado = $conn->query($sql);
+
+                    if ($resultado->num_rows > 0) {
+                        while ($linha = $resultado->fetch_assoc()) {
+                            echo "<option value='" . $linha['id'] . "'>" . htmlspecialchars($linha['niv_acesso']) . "</option>";
+                        }
+                    } else {
+                        echo "<option value=''>Nenhum nível encontrado</option>";
+                    }
+                ?>
+            </select>
 
             <label>Email:</label><br>
             <input type="email" name="email" maxlength="50" required><br><br>
