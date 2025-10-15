@@ -54,7 +54,7 @@ main{
 }
 
 #form select{
-    width: 20vh;
+    min-width: 50vh;
     padding: 10px;
     text-align: center;
     text-transform: uppercase;

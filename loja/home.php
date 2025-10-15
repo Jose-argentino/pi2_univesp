@@ -25,6 +25,7 @@
         <?php 
             include "php/partes/menuInterno.php"
         ?>
+
     </div>
         
     </header>

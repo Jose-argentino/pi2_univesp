@@ -40,20 +40,24 @@
 
             <label>Nível de Acesso:</label><br>
             <select name="nivel_acesso" required>
-                <option value="">Selecione um nível</option>
+                <option value="">Selecione</option>
                 <?php
-                    // Consulta para buscar os níveis de acesso disponíveis
-                    $sql = "SELECT id, niv_acesso FROM tb_acesso";
-                    $resultado = $conn->query($sql);
+                    try {
+                        $sql = "SELECT id, niv_acesso FROM tb_acesso";
+                        $stmt = $conn->query($sql);
+                        $niveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    if ($resultado->num_rows > 0) {
-                        while ($linha = $resultado->fetch_assoc()) {
-                            echo "<option value='" . $linha['id'] . "'>" . htmlspecialchars($linha['niv_acesso']) . "</option>";
+                        if ($niveis) {
+                            foreach ($niveis as $linha) {
+                                echo "<option value='" . htmlspecialchars($linha['id']) . "'>" . htmlspecialchars($linha['niv_acesso']) . "</option>";
+                            }
+                        } else {
+                            echo "<option value=''>Nenhum nível encontrado</option>";
                         }
-                    } else {
-                        echo "<option value=''>Nenhum nível encontrado</option>";
+                    } catch (PDOException $e) {
+                        echo "<option value=''>Erro ao carregar níveis</option>";
                     }
-                ?>
+                    ?>
             </select>
 
             <label>Email:</label><br>

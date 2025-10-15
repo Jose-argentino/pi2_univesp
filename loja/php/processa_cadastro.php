@@ -1,5 +1,7 @@
 <?php
 
+    include "php/partes/validaSession.php";
+
     // Inclui conexão com banco de dados
     include "partes/conexao.php";
 

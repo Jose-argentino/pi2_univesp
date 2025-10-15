@@ -20,4 +20,6 @@
 
 
         </ul>
+        <p>Bem-vindo, <strong><?php echo htmlspecialchars($_SESSION['nome']); ?></strong>!</p>
+
     </nav>

@@ -66,6 +66,12 @@ header {
   text-decoration: none;
 }
 
+#menu p{
+  display: block;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+}
+
 /* navbar do menu externo - texto*/
 #navBarExterno {
   margin: 0;
@@ -90,6 +96,7 @@ header {
 /* --------- MODO DESKTOP --------- */
 @media (min-width: 700px) {
   #menu {
+    background: var(--background-color-6);
     display: block; /* <== ESSA LINHA É A MAIS IMPORTANTE */
   }
 
@@ -117,5 +124,21 @@ header {
     color: var(--cor-fonte-1);
     text-decoration: none;
     font-size: 1rem;
+  }
+
+  #menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #menu p{
+    margin: 0;
+  }
+
+  strong{
+    font-weight: bold;
+    text-transform: uppercase;
   }
 }
