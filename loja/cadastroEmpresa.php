@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="css/footerExterno.css">
-    <title>Cadastro de Usuário</title>
+    <title>Cadastro de Empresas</title>
 </head>
 
 <body>
@@ -26,20 +26,37 @@
     </header>
 
     <main>
-        <h2>Cadastro de Usuário</h2>
+        <h2>Cadastro de Fornecedor</h2>
 
-        <form id="form" action="php/processa_cadastro.php" method="POST">
+        <form id="form" action="php/processaCadastroEmpresa.php" method="POST">
+
             <label>Nome:</label><br>
             <input type="text" name="nome"  required><br><br>
 
-            <label>Sobrenome:</label><br>
-            <input type="text" name="sobreNome"  required><br><br>
+            <label>Vendedor:</label><br>
+            <input type="text" name="vendedor"  required><br><br>
 
-            <label>Senha:</label><br>
-            <input type="password" name="senha"  required><br><br>
+            <label>CNPJ:</label><br>
+            <input type="text" name="cnpj" maxlength="14" required><br><br>
 
-            <label>CPF:</label><br>
-            <input type="text" name="cpf" maxlength="11" required><br><br>
+            <label>Email:</label><br>
+            <input type="email" name="email" maxlength="50" required><br><br>
+
+            <label>Telefone:</label><br>
+            <input type="text" name="telefone" maxlength="12"><br><br>
+
+            <label>Endereço:</label><br>
+            <textarea name="endereco"></textarea><br><br>
+
+            <label>Observações:</label><br>
+            <textarea name="obs"></textarea><br><br>
+
+            <label>Status:</label><br>
+            <select name="statusEmpresa">
+                <option value="1">Ativo</option>
+                <option value="0">Inativo</option>
+            </select><br><br>
+
 
             <label>Nível de Acesso:</label><br>
             <select name="nivel_acesso" required>
@@ -63,23 +80,9 @@
                 ?>
             </select>
 
-            <label>Email:</label><br>
-            <input type="email" name="email" maxlength="50" required><br><br>
+            
 
-            <label>Telefone:</label><br>
-            <input type="text" name="telefone" maxlength="12"><br><br>
-
-            <label>Endereço:</label><br>
-            <textarea name="endereco"></textarea><br><br>
-
-            <label>Observações:</label><br>
-            <textarea name="obs"></textarea><br><br>
-
-            <label>Status:</label><br>
-            <select name="status_usuario">
-                <option value="1">Ativo</option>
-                <option value="0">Inativo</option>
-            </select><br><br>
+            
 
             <button class="btnCadastrar" type="submit">Cadastrar</button>
         </form>

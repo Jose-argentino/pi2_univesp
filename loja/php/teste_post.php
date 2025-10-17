@@ -1,5 +1,6 @@
 <?php
 
+        echo "<h1>$id</h1>";
 
 session_start();
 require_once "partes/conexao.php";

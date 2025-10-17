@@ -28,7 +28,7 @@
         <main>
             <div class="cadrasto">
                 <button class="btnLink"><a href="cadastroUse.php">Usuário</a></button>
-                <button class="btnLink"><a href="">Fornecedor</a></button>
+                <button class="btnLink"><a href="cadastroEmpresa.php">Fornecedor</a></button>
                 <button class="btnLink"><a href="">Part Number</a></button>
                 <button class="btnLink"><a href="">Estoque</a></button>
                 <button class="btnLink"><a href="">Categoria</a></button>

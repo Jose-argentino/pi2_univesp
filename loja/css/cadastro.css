@@ -24,9 +24,9 @@ main{
 }
 
 #form label {
-    display: block;
     font-weight: bold;
-    margin-bottom: 0;
+    margin: 0;
+    gap: 0;
     text-transform: uppercase;
     text-align: center;
 }
@@ -34,7 +34,6 @@ main{
 #form input {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
     border-radius: var(--form-border-radius);
     background-color: transparent;
     font-size: 1.5rem;
@@ -60,9 +59,9 @@ main{
     text-transform: uppercase;
     border-radius: var(--form-border-radius);
     font-size: 1.5rem;
-    margin-bottom: 5px;
     border: 2px solid var(--cor-fonte-5);
-    min-height: 25px;  
+    min-height: 25px; 
+    margin-bottom: 35px; 
 }
 
 
