@@ -67,7 +67,7 @@
             <input type="email" name="email" maxlength="50" required><br><br>
 
             <label>Telefone:</label><br>
-            <input type="text" name="telefone" maxlength="12"><br><br>
+            <input type="text" name="telefone" maxlength="20"><br><br>
 
             <label>Endereço:</label><br>
             <textarea name="endereco"></textarea><br><br>

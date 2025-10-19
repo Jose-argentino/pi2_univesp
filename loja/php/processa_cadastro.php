@@ -1,28 +1,21 @@
 <?php
 
     include "partes/validaSession.php";
-    // Inclui conexão com banco de dados
     include "partes/conexao.php";
 
     try {
         // Cria a conexão usando PDO
-        // DSN = Data Source Name → mysql:host=...;dbname=...
         $pdo = new PDO("mysql:host=$servername;dbname=$database;charset=utf8", $username, $password);
 
-        // Define o modo de erro do PDO para lançar exceções (mais fácil de debugar)
+        // Define o modo de erro do PDO para lançar exceções 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // Cada campo é capturado pelo método POST
 
         // Captura o id do usuário armazenado na sessão
         $id = $_SESSION['id_usuario'];
     
-        $nome = $_POST['nome'];
-
         $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); 
-        // Criptografa a senha para não armazenar em texto puro no banco
-        // PASSWORD_DEFAULT = usa o algoritmo recomendado pelo PHP (atualmente bcrypt)
-
+        
+        $nome = $_POST['nome'];
         $cpf            = $_POST['cpf'];
         $nivel_acesso   = $_POST['nivel_acesso'];
         $email          = $_POST['email'];

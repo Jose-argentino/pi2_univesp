@@ -30,8 +30,8 @@
 
         <form id="form" action="php/processaCadastroEmpresa.php" method="POST">
 
-            <label>Nome:</label><br>
-            <input type="text" name="nome"  required><br><br>
+            <label>Fornecedor:</label><br>
+            <input type="text" name="fornecedor"  required><br><br>
 
             <label>Vendedor:</label><br>
             <input type="text" name="vendedor"  required><br><br>
@@ -43,7 +43,7 @@
             <input type="email" name="email" maxlength="50" required><br><br>
 
             <label>Telefone:</label><br>
-            <input type="text" name="telefone" maxlength="12"><br><br>
+            <input type="text" name="telefone" maxlength="20"><br><br>
 
             <label>Endereço:</label><br>
             <textarea name="endereco"></textarea><br><br>
@@ -56,33 +56,7 @@
                 <option value="1">Ativo</option>
                 <option value="0">Inativo</option>
             </select><br><br>
-
-
-            <label>Nível de Acesso:</label><br>
-            <select name="nivel_acesso" required>
-                <option value="">Selecione</option>
-                <?php
-                    try {
-                        $sql = "SELECT id, niv_acesso FROM tb_acesso";
-                        $stmt = $conn->query($sql);
-                        $niveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                        if ($niveis) {
-                            foreach ($niveis as $linha) {
-                                echo "<option value='" . htmlspecialchars($linha['id']) . "'>" . htmlspecialchars($linha['niv_acesso']) . "</option>";
-                            }
-                        } else {
-                            echo "<option value=''>Nenhum nível encontrado</option>";
-                        }
-                    } catch (PDOException $e) {
-                        echo "<option value=''>Erro ao carregar níveis</option>";
-                    }
-                ?>
-            </select>
-
-            
-
-            
+     
 
             <button class="btnCadastrar" type="submit">Cadastrar</button>
         </form>
