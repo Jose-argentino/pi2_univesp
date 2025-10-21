@@ -1,5 +1,5 @@
 <div id="logoPequena">
-    <img class="logoPequenaImg" src="loja/img/logo/logo_1.jpg" alt="">
+    <img class="logoPequenaImg" src="loja/img/logo/logo_1.png" alt="">
 </div>
 
 <div id="nome">

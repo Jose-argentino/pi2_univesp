@@ -28,29 +28,20 @@
     <main>
         <h2>Cadastro de Fornecedor</h2>
 
-        <form id="form" action="php/processaCadastroEmpresa.php" method="POST">
+        <form id="form" action="php/processaCadastroAcesso.php" method="POST">
 
-            <label>Fornecedor:</label><br>
-            <input type="text" name="fornecedor"  required><br><br>
+            <label>Nivel do Acesso:</label><br>
+            <input type="text" name="niv_acesso" required><br><br>
 
-            <label>Vendedor:</label><br>
-            <input type="text" name="vendedor"  required><br><br>
 
-            <label>CNPJ:</label><br>
-            <input type="text" name="cnpj" required><br><br>
+            <label>Titulo:</label><br>
+            <input type="text" name="titulo"  required><br><br>
 
-            <label>Email:</label><br>
-            <input type="email" name="email" maxlength="50" required><br><br>
-
-            <label>Telefone:</label><br>
-            <input type="text" name="telefone" maxlength="20"><br><br>
-
-            <label>Endereço:</label><br>
-            <textarea name="endereco"></textarea><br><br>
+            <label>Caracteristica:</label><br>
+            <textarea name="caracteristica"></textarea><br><br>
 
             <label>Observações:</label><br>
             <textarea name="obs"></textarea><br><br>
-     
 
             <button class="btnCadastrar" type="submit">Cadastrar</button>
         </form>
