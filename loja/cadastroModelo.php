@@ -26,7 +26,7 @@
     </header>
 
     <main>
-        <h2>Cadastro de Fornecedor</h2>
+        <h2>Cadastro de Modelo</h2>
 
         <form id="form" action="php/processaCadastroModelo.php" method="POST">
 
@@ -74,7 +74,7 @@
                 ?>
             </select>
 
-            <label>Part Number:</label><br>
+            <label>Código:</label><br>
             <input type="text" name="partNumber" required><br><br>
 
 

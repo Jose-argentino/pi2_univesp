@@ -29,10 +29,10 @@
             <div class="cadrasto">
                 <button class="btnLink"><a href="cadastroUse.php">Usuário</a></button>
                 <button class="btnLink"><a href="cadastroEmpresa.php">Fornecedor</a></button>
-                <button class="btnLink"><a href="cadastroModelo.php">Part Number</a></button>
+                <button class="btnLink"><a href="cadastroModelo.php">Modelo</a></button>
                 <button class="btnLink"><a href="">Estoque</a></button>
-                <button class="btnLink"><a href="">Categoria</a></button>
-                <button class="btnLink"><a href="">Acesso</a></button>
+                <button class="btnLink"><a href="cadastroCategoria.php">Categoria</a></button>
+                <button class="btnLink"><a href="cadastroAcesso.php">Acesso</a></button>
 
             </div>
 

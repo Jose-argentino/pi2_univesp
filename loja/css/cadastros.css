@@ -24,6 +24,8 @@ main{
     min-width: 25vh;
     min-height: 10vh;
     background: var(--background-color-5);
+    border-radius: var( --form-border-radius);
+
 }
 
 .btnLink a{
@@ -31,6 +33,7 @@ main{
     color: var(--cor-fonte-1);
     font-size: 2rem;
     font-weight: bold;
+    border-radius: var( --form-border-radius);
 }
 
 /* Estilo responsivo*/

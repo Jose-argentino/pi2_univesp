@@ -26,12 +26,12 @@
     </header>
 
     <main>
-        <h2>Cadastro de Nivel de Acesso</h2>
+        <h2>Cadastro de Categoria</h2>
 
-        <form id="form" action="php/processaCadastroAcesso.php" method="POST">
+        <form id="form" action="php/processaCadastroCategoria.php" method="POST">
 
-            <label>Nivel do Acesso:</label><br>
-            <input type="text" name="niv_acesso" required><br><br>
+            <label>Categoria</label><br>
+            <input type="text" name="categoria" required><br><br>
 
             <label>Observações:</label><br>
             <textarea name="obs"></textarea><br><br>
