@@ -79,6 +79,44 @@ main{
 }
 
 
+#listaAcessos table {
+    table-layout: fixed; /* MANTENHA: Força o comportamento de layout fixo */
+    width: 90vw; /* NOVO: Garante que a tabela tenha uma largura definida (ex: 90% da largura da tela) */
+    max-width: 600px; /* OPCIONAL: Limita o tamanho máximo em telas grandes */
+    margin: 0 auto; /* Centraliza a tabela */
+}
+
+.textoGrande {
+    width: 60%; /* Ajuste a largura. Coloquei 60% como exemplo */
+    
+    /* Propriedades para Quebra de Linha */
+    word-wrap: break-word;    /* Garante a quebra de palavras longas (IE/Edge) */
+    overflow-wrap: break-word; /* Equivalente moderno de word-wrap (Chrome/Firefox) */
+    word-break: break-all;     /* FORÇA a quebra de texto em qualquer ponto (útil para URLs longas sem espaço) */
+    white-space: normal;       /* MANTENHA: garante que não está forçando o texto em uma linha */
+    
+    /* Adicione estas linhas se precisar alinhar o conteúdo */
+    vertical-align: top;
+    text-align: left;
+}
+
+/* Coluna 1: Nível de Acesso */
+#listaAcessos table tr th:nth-child(1),
+#listaAcessos table tr td:nth-child(1) {
+    width: 20%; 
+}
+
+/* Coluna 3: Ações (Botões) */
+#listaAcessos table tr th:nth-child(3),
+#listaAcessos table tr td:nth-child(3) {
+    width: 20%; 
+}
+
+/* Coluna 2: Observações (.textoGrande) - 20% + 60% + 20% = 100% */
+/* A regra anterior já deve ter definido para 60% */
+
+
+
 /* Estilo responsivo*/
 @media (min-width: 700px){
     .recuperar-senha:hover {

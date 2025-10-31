@@ -1,5 +1,5 @@
 <?php
-include "partes/conexao.php";
+include "../php/partes/conexao.php";
 
 header('Content-Type: application/json; charset=utf-8');
 

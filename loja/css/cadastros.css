@@ -28,12 +28,16 @@ main{
 
 }
 
-.btnLink a{
+.cadrasto a{
+    text-decoration: none;
+}
+
+.cadrasto a button{
     text-decoration: none;
     color: var(--cor-fonte-1);
     font-size: 2rem;
     font-weight: bold;
-    border-radius: var( --form-border-radius);
+    /* border-radius: var( --form-border-radius); */
 }
 
 /* Estilo responsivo*/

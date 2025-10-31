@@ -27,12 +27,12 @@
 
         <main>
             <div class="cadrasto">
-                <button class="btnLink"><a href="cadastroUse.php">Usuário</a></button>
-                <button class="btnLink"><a href="cadastroEmpresa.php">Fornecedor</a></button>
-                <button class="btnLink"><a href="cadastroModelo.php">Modelo</a></button>
-                <button class="btnLink"><a href="">Estoque</a></button>
-                <button class="btnLink"><a href="cadastroCategoria.php">Categoria</a></button>
-                <button class="btnLink"><a href="cadastroAcesso.php">Acesso</a></button>
+                <a href="cadastroUse.php"><button class="btnLink">Usuário</button></a>
+                <a href="cadastroEmpresa.php"><button class="btnLink">Fornecedor</button></a>
+                <a href="cadastroModelo.php"><button class="btnLink">Modelo</button></a>
+                <a href=""><button class="btnLink">Estoque</button></a>
+                <a href="cadastroCategoria.php"><button class="btnLink">Categoria</button></a>
+                <a href="cadastroAcesso.php"><button class="btnLink">Acesso</button></a>
 
             </div>
 
