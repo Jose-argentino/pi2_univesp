@@ -2,8 +2,7 @@
 // senha:Teste 01 email +
 // email:j.argentino.ti@gmail.com
 // dominio:sandbox0a73c8350fb542e582aec513d45d62b5.mailgun.org
-// chave:3fd7bb5bfe396d679bc527e486c87838-88b1ca9f-90336efd
-// 88b1ca9f-90336efd
+// chave:// 88b1ca9f-90336efd
 ?>
 
 <?php
