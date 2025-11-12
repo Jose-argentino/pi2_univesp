@@ -21,7 +21,11 @@
         </header>
 
         <main>
-            <h1>aqui tem de por uma api para emviar um email de recuperação</h1>
+            <form action="loja/php/enviarEmailRecuperacao.php" method="POST" class="form-recuperar">
+                <label for="email">Digite seu e-mail cadastrado:</label><br>
+                <input type="email" id="email" name="email" required placeholder="exemplo@email.com"><br><br>
+                <button type="submit">Enviar link de recuperação</button>
+            </form>
         </main>
 
         <footer>
