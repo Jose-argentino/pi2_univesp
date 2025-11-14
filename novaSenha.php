@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><!-- Arquivo CSS externo -->
     <link rel="stylesheet" href="loja/css/geral.css">
     <link rel="stylesheet" href="loja/css/menu.css">
-    <link rel="stylesheet" href="loja/css/index.css">
+    <link rel="stylesheet" href="loja/css/nova_senha.css">
     <link rel="stylesheet" href="loja/css/footerExterno.css">
 
     <title>Recuperar Senha</title>
@@ -22,9 +22,16 @@
 
         <main>
             <form action="loja/php/enviarEmailRecuperacao.php" method="POST" class="form-recuperar">
-                <label for="email">Digite seu e-mail cadastrado:</label><br>
-                <input type="email" id="email" name="email" required placeholder="exemplo@email.com"><br><br>
-                <button type="submit">Enviar link de recuperação</button>
+                <div class="form">
+
+                    <label for="email">Digite seu e-mail cadastrado:</label>
+
+                    <input type="email" id="email" name="email" required placeholder="exemplo@email.com">
+                    
+                    <div class="buttons">
+                        <button type="submit">Recuper</button>
+                    </div>
+                </div>
             </form>
         </main>
 

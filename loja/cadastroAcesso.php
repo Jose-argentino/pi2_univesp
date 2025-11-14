@@ -29,17 +29,6 @@
 
         <h2>Cadastro de Nivel de Acesso</h2>
 
-        <!-- <form id="form" action="php/processaCadastroAcesso.php" method="POST">
-
-            <label>Nivel do Acesso:</label><br>
-            <input type="text" name="niv_acesso" required><br><br>
-
-            <label>Observações:</label><br>
-            <textarea name="obs"></textarea><br><br>
-
-            <button class="btnCadastrar" type="submit">Cadastrar</button>
-        </form> -->
-
         <form id="form" action="php/processaCadastroAcesso.php" method="POST">
 
             <input type="hidden" name="id_acesso" id="id_acesso" value="">
@@ -67,7 +56,53 @@
 
 
     <script>
-        // --- Funções de Manipulação do Formulário ---
+        //Funções de Listagem
+        
+        async function carregarAcessos() {
+            try {
+                const resposta = await fetch('js/listaAcesso.php');
+                const acessos = await resposta.json();
+
+                const divLista = document.getElementById('listaAcessos');
+                divLista.innerHTML = '';
+
+                if (acessos.length === 0) {
+                    divLista.innerHTML = '<p>Nenhum nível de acesso cadastrado.</p>';
+                    return;
+                }
+
+                // Cria uma tabela
+                let tabela = `
+                    <table border="1" cellpadding="8" cellspacing="0">
+                        <tr>
+                            <th>Nível de Acesso</th>
+                            <th class="textoGrande">Observações</th>
+                            <th>Ações</th>
+                        </tr>
+                `;
+
+                // Percorre os registros e monta as linhas
+                acessos.forEach(acesso => {
+                    tabela += `
+                        <tr>
+                            <td>${acesso.niv_acesso}</td>
+                            <td class="textoGrande">${acesso.obs || ''}</td>
+                            <td>
+                                <button onclick="editarAcesso(${acesso.id})">✏️ Editar</button> 
+                                <button onclick="excluirAcesso(${acesso.id})">🗑️ Excluir</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                tabela += '</table>';
+                divLista.innerHTML = tabela;
+
+            } catch (erro) {
+                console.error('Erro ao carregar acessos:', erro);
+                // ...
+            }
+        }
 
         // Limpa o formulário e reverte o modo para 'Cadastro'
         function limparFormulario() {
@@ -146,53 +181,7 @@
         });
 
 
-        //Funções de Listagem
         
-        async function carregarAcessos() {
-            try {
-                const resposta = await fetch('js/listaAcesso.php');
-                const acessos = await resposta.json();
-
-                const divLista = document.getElementById('listaAcessos');
-                divLista.innerHTML = '';
-
-                if (acessos.length === 0) {
-                    divLista.innerHTML = '<p>Nenhum nível de acesso cadastrado.</p>';
-                    return;
-                }
-
-                // Cria uma tabela
-                let tabela = `
-                    <table border="1" cellpadding="8" cellspacing="0">
-                        <tr>
-                            <th>Nível de Acesso</th>
-                            <th class="textoGrande">Observações</th>
-                            <th>Ações</th>
-                        </tr>
-                `;
-
-                // Percorre os registros e monta as linhas
-                acessos.forEach(acesso => {
-                    tabela += `
-                        <tr>
-                            <td>${acesso.niv_acesso}</td>
-                            <td class="textoGrande">${acesso.obs || ''}</td>
-                            <td>
-                                <button onclick="editarAcesso(${acesso.id})">✏️ Editar</button> 
-                                <button onclick="excluirAcesso(${acesso.id})">🗑️ Excluir</button>
-                            </td>
-                        </tr>
-                    `;
-                });
-
-                tabela += '</table>';
-                divLista.innerHTML = tabela;
-
-            } catch (erro) {
-                console.error('Erro ao carregar acessos:', erro);
-                // ...
-            }
-        }
 
         // Funções de excluir 
         async function excluirAcesso(id) {

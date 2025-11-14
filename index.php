@@ -39,7 +39,6 @@
 
             <div id="mensagem-erro"></div>
 
-            
             <form action="loja/php/login_process.php" method="POST">
                 <div class="form">
 
