@@ -1,0 +1,65 @@
+#container {
+    gap: 2px;
+}
+
+header {
+    background: var(--background-color-6);
+}
+
+main{
+    background: var(--background-color-6);   
+}
+
+.cadrasto{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding: 3vh;
+}
+
+.btnLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 25vh;
+    min-height: 10vh;
+    background: var(--background-color-5);
+    border-radius: var( --form-border-radius);
+
+}
+
+.cadrasto a{
+    text-decoration: none;
+}
+
+.cadrasto a button{
+    text-decoration: none;
+    color: var(--cor-fonte-1);
+    font-size: 2rem;
+    font-weight: bold;
+    /* border-radius: var( --form-border-radius); */
+}
+
+/* Estilo responsivo*/
+@media (min-width: 700px){
+    .cadrasto{
+        display: flex;
+        flex-direction:row;
+        flex-wrap: wrap;
+        gap: 5vh;
+        padding: 3vh;
+    }
+
+    .btnLink{
+        min-width: 30vh;
+        min-height: 20vh;
+    }
+
+    .btnLink:hover {
+        cursor: pointer;
+        min-width: 35vh;
+        min-height: 25vh;
+        background: var(--background-color-2);
+        color:var(--cor-fonte-6);
+    }
+}
