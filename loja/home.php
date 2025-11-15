@@ -30,8 +30,97 @@
         
     </header>
 
-        <main>
-         <h2>teste main da home</h2>   
+        <main class="produtos-container">
+            <h2 class="titulo-secao">Produtos à Venda</h2>
+
+            <div class="produtos-grid">
+
+                <!-- Produto 1 -->
+                <div class="produto-card">
+                    <img src="img/produto/p01.jpg" alt="Produto 1" class="produto-img">
+
+                    <h3 class="produto-titulo">Nome do Produto</h3>
+
+                    <p class="produto-preco">R$ 99,90</p>
+
+                    <div class="produto-botoes">
+                        <a href="#" class="btn-comprar">Comprar</a>
+                        <a href="#" class="btn-saibamais">Saiba Mais</a>
+                    </div>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="produto-card">
+                    <img src="img/produto/p02.jpeg" alt="Produto 2" class="produto-img">
+
+                    <h3 class="produto-titulo">Outro Produto</h3>
+
+                    <p class="produto-preco">R$ 149,90</p>
+
+                    <div class="produto-botoes">
+                        <a href="#" class="btn-comprar">Comprar</a>
+                        <a href="#" class="btn-saibamais">Saiba Mais</a>
+                    </div>
+                </div>
+
+                <!-- Produto 1 -->
+                <div class="produto-card">
+                    <img src="img/produto/p01.jpg" alt="Produto 1" class="produto-img">
+
+                    <h3 class="produto-titulo">Nome do Produto</h3>
+
+                    <p class="produto-preco">R$ 99,90</p>
+
+                    <div class="produto-botoes">
+                        <a href="#" class="btn-comprar">Comprar</a>
+                        <a href="#" class="btn-saibamais">Saiba Mais</a>
+                    </div>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="produto-card">
+                    <img src="img/produto/p02.jpeg" alt="Produto 2" class="produto-img">
+
+                    <h3 class="produto-titulo">Outro Produto</h3>
+
+                    <p class="produto-preco">R$ 149,90</p>
+
+                    <div class="produto-botoes">
+                        <a href="#" class="btn-comprar">Comprar</a>
+                        <a href="#" class="btn-saibamais">Saiba Mais</a>
+                    </div>
+                </div>
+
+                <!-- Produto 1 -->
+                <div class="produto-card">
+                    <img src="img/produto/p01.jpg" alt="Produto 1" class="produto-img">
+
+                    <h3 class="produto-titulo">Nome do Produto</h3>
+
+                    <p class="produto-preco">R$ 99,90</p>
+
+                    <div class="produto-botoes">
+                        <a href="#" class="btn-comprar">Comprar</a>
+                        <a href="#" class="btn-saibamais">Saiba Mais</a>
+                    </div>
+                </div>
+
+                <!-- Produto 2 -->
+                <div class="produto-card">
+                    <img src="img/produto/p02.jpeg" alt="Produto 2" class="produto-img">
+
+                    <h3 class="produto-titulo">Outro Produto</h3>
+
+                    <p class="produto-preco">R$ 149,90</p>
+
+                    <div class="produto-botoes">
+                        <a href="#" class="btn-comprar">Comprar</a>
+                        <a href="#" class="btn-saibamais">Saiba Mais</a>
+                    </div>
+                </div>
+
+            </div>
+ 
         </main>
 
         <!-- java script -->

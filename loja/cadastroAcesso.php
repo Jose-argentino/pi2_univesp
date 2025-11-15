@@ -44,7 +44,7 @@
         </form>
         <hr>
         <h2>Lista de Níveis de Acesso</h2>
-        <div id="listaAcessos"></div>
+        <div id="listaLista"></div>
 
     </main>
 
@@ -56,9 +56,8 @@
 
 
     <script>
-        //Funções de Listagem
         
-        async function carregarAcessos() {
+        async function carregarLista() {
             try {
                 const resposta = await fetch('js/listaAcesso.php');
                 const acessos = await resposta.json();
