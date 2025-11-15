@@ -42,9 +42,9 @@
             <button class="btnCadastrar" type="submit" id="btnSalvar">Cadastrar</button>
             <button type="button" class="btnCadastrar" id="btnCancelarEdicao" style="display: none;" onclick="limparFormulario()">Cancelar Edição</button>
         </form>
-        <hr>
+        
         <h2>Lista de Níveis de Acesso</h2>
-        <div id="listaLista"></div>
+        <div id="carregarLista"></div>
 
     </main>
 
@@ -56,13 +56,110 @@
 
 
     <script>
-        
+        // sé não veio informaçao do banco ao caregar a pagina . Limpa o formulário e reverte o modo para 'Cadastro'
+        function limparFormulario() {
+            document.getElementById('id_acesso').value = '';
+            document.getElementById('niv_acesso').value = '';
+            document.getElementById('obs').value = '';
+            document.getElementById('btnSalvar').innerText = 'Cadastrar';
+            document.getElementById('btnCancelarEdicao').style.display = 'none';
+            document.querySelector('main h2').innerText = 'Cadastro de Nivel de Acesso';
+        }
+
+        // se vier do banco de dados, Função para carregar os dados de um registro no formulário
+        async function editarAcesso(id) {
+            try {
+                // Requisição para buscar um único registro 
+                const resposta = await fetch('js/listaAcessoBuscar.php?id=' + id); 
+                const acesso = await resposta.json();
+
+                if (acesso && acesso.id) {
+                    // 1. Preenche os campos do formulário
+                    document.getElementById('id_acesso').value = acesso.id;
+                    document.getElementById('niv_acesso').value = acesso.niv_acesso;
+                    document.getElementById('obs').value = acesso.obs || '';
+
+                    // 2. Altera o texto do botão para "Salvar Alterações"
+                    document.getElementById('btnSalvar').innerText = 'Salvar Alterações';
+
+                    // 3. Exibe o botão de cancelar edição
+                    document.getElementById('btnCancelarEdicao').style.display = 'inline-block';
+                    
+                    // 4. Altera o título
+                    document.querySelector('main h2').innerText = 'Editando Nivel de Acesso (ID: ' + acesso.id + ')';
+                    
+                    // 5. Rola para o formulário
+                    document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
+
+                } else {
+                    alert('Erro ao buscar dados do acesso.');
+                }
+            } catch (erro) {
+                console.error('Erro ao carregar dados para edição:', erro);
+                alert('Erro ao carregar dados para edição.');
+            }
+        }
+
+        // --- Função de Envio do Formulário (Cadastro/Edição) - Intercepta o envio do formulário padrão para fazer a requisição via AJAX/Fetch
+        document.getElementById('form').addEventListener('submit', async function(event) {
+            event.preventDefault(); 
+
+            const formulario = event.target;
+            const formData = new FormData(formulario); 
+            
+            const id_acesso = document.getElementById('id_acesso').value;
+            const url_destino = id_acesso ? 'php/atualizaAcesso.php' : 'php/processaCadastroAcesso.php';
+
+            try {
+                const resposta = await fetch(url_destino, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const resultado = await resposta.text();
+                alert(resultado); 
+
+                limparFormulario(); 
+                carregarLista();
+
+            } catch (erro) {
+                console.error('Erro ao processar formulário:', erro);
+                alert('Erro ao tentar processar a operação.');
+            }
+        });        
+
+        // Funções de excluir 
+        async function excluirAcesso(id) {
+            if (confirm('Tem certeza que deseja excluir este acesso?')) {
+                try {
+                    const url_exclusao = 'js/listaAcessoExcluir.php?id=' + id; 
+                    const resposta = await fetch(url_exclusao);
+                    
+                    const resultado = await resposta.json(); 
+                    
+                    if (resultado.sucesso) {
+                        alert(resultado.sucesso); 
+                    } else {
+                        alert(resultado.erro || 'Erro desconhecido ao excluir.'); 
+                    }
+                    
+                    carregarLista(); 
+                    
+                } catch (erro) {
+                    console.error('Erro na exclusão:', erro);
+                    alert('Erro ao processar a exclusão. Verifique o console.');
+                 
+                }
+            }
+        }
+
+        //funçao carregar lista
         async function carregarLista() {
             try {
                 const resposta = await fetch('js/listaAcesso.php');
                 const acessos = await resposta.json();
 
-                const divLista = document.getElementById('listaAcessos');
+                const divLista = document.getElementById('carregarLista');
                 divLista.innerHTML = '';
 
                 if (acessos.length === 0) {
@@ -98,104 +195,15 @@
                 divLista.innerHTML = tabela;
 
             } catch (erro) {
-                console.error('Erro ao carregar acessos:', erro);
+                console.error('Erro ao carregar lista de acessos:', erro);
                 // ...
-            }
-        }
-
-        // Limpa o formulário e reverte o modo para 'Cadastro'
-        function limparFormulario() {
-            document.getElementById('id_acesso').value = '';
-            document.getElementById('niv_acesso').value = '';
-            document.getElementById('obs').value = '';
-            document.getElementById('btnSalvar').innerText = 'Cadastrar';
-            document.getElementById('btnCancelarEdicao').style.display = 'none';
-            document.querySelector('main h2').innerText = 'Cadastro de Nivel de Acesso';
-        }
-
-        // Função para carregar os dados de um registro no formulário
-        async function editarAcesso(id) {
-            try {
-                // Requisição para buscar um único registro 
-                const resposta = await fetch('php/listaAcessoBuscar.php?id=' + id); 
-                const acesso = await resposta.json();
-
-                if (acesso && acesso.id) {
-                    // 1. Preenche os campos do formulário
-                    document.getElementById('id_acesso').value = acesso.id;
-                    document.getElementById('niv_acesso').value = acesso.niv_acesso;
-                    document.getElementById('obs').value = acesso.obs || '';
-
-                    // 2. Altera o texto do botão para "Salvar Alterações"
-                    document.getElementById('btnSalvar').innerText = 'Salvar Alterações';
-
-                    // 3. Exibe o botão de cancelar edição
-                    document.getElementById('btnCancelarEdicao').style.display = 'inline-block';
-                    
-                    // 4. Altera o título
-                    document.querySelector('main h2').innerText = 'Editando Nivel de Acesso (ID: ' + acesso.id + ')';
-                    
-                    // 5. Rola para o formulário
-                    document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
-
-                } else {
-                    alert('Erro ao buscar dados do acesso.');
-                }
-            } catch (erro) {
-                console.error('Erro ao carregar dados para edição:', erro);
-                alert('Erro ao carregar dados para edição.');
-            }
-        }
-
-
-        // --- Função de Envio do Formulário (Cadastro/Edição) - Intercepta o envio do formulário padrão para fazer a requisição via AJAX/Fetch
-        document.getElementById('form').addEventListener('submit', async function(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário (recarregar página)
-
-            const formulario = event.target;
-            const formData = new FormData(formulario);
-            
-            // Define qual arquivo PHP de processamento usar
-            // Se id_acesso estiver preenchido, é EDIÇÃO. Caso contrário, é CADASTRO.
-            const id_acesso = document.getElementById('id_acesso').value;
-            const url_destino = id_acesso ? 'php/atualizaAcesso.php' : 'php/processaCadastroAcesso.php';
-
-            try {
-                const resposta = await fetch(url_destino, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const resultado = await resposta.text();
-                alert(resultado); // Exibe a mensagem de sucesso ou erro do PHP
-
-                // Após a ação, limpa o formulário e recarrega a lista
-                limparFormulario(); 
-                carregarAcessos();
-
-            } catch (erro) {
-                console.error('Erro ao processar formulário:', erro);
-                alert('Erro ao tentar processar a operação.');
-            }
-        });
-
-
-        
-
-        // Funções de excluir 
-        async function excluirAcesso(id) {
-            if (confirm('Tem certeza que deseja excluir este acesso?')) {
-                const resposta = await fetch('php/listaAcessoExcluir.php?id=' + id);
-                const resultado = await resposta.text();
-                alert(resultado);
-                carregarAcessos(); // Recarrega a lista
             }
         }
 
         // Carrega a lista e limpa o formulário ao abrir a página
         window.onload = function() {
             limparFormulario();
-            carregarAcessos();
+            carregarLista();
         };
     </script>
 </body>

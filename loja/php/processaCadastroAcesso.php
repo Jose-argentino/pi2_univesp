@@ -4,7 +4,6 @@
     include "partes/conexao.php";
 
     try {
-        // Cria a conexão usando PDO
         $pdo = new PDO("mysql:host=$servername;dbname=$database;charset=utf8", $username, $password);
 
         // Define o modo de erro do PDO para lançar exceções 
@@ -19,25 +18,17 @@
             VALUES 
             (:niv_acesso, :obs, :cadastrado_por)";
             
-        // Prepara a query (evita SQL injection e melhora desempenho)
         $stmt = $pdo->prepare($sql);
 
-        // Faz o bind (associa) cada parâmetro ao valor recebido
         $stmt->bindParam(':cadastrado_por', $id);
         $stmt->bindParam(':niv_acesso', $niv_acesso);
         $stmt->bindParam(':obs', $obs);
     
         if ($stmt->execute()) {
             // Exibe mensagem e redireciona com JavaScript
-            echo "<script>
-                alert('Modelo cadastrado com sucesso!');
-                window.location.href = '../cadastroAcesso.php';
-            </script>";
+            echo "'Cadastrado com sucesso!'";
         } else {
-            echo "<script>
-                alert('Erro ao cadastrar fornecedor!');
-                window.location.href = '../cadastroAcesso.php';
-            </script>";
+            echo "Erro ao cadastrar fornecedor!";
         }
 
 

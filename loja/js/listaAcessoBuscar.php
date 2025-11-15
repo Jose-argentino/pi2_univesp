@@ -1,6 +1,6 @@
 <?php
-include "partes/validaSession.php";
-include "partes/conexao.php";
+include "../php/partes/validaSession.php";
+include "../php/partes/conexao.php";
 
 header('Content-Type: application/json'); // Garante que a resposta é JSON
 
