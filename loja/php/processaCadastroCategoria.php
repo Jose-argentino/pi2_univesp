@@ -29,10 +29,9 @@
     
         if ($stmt->execute()) {
             // Exibe mensagem e redireciona com JavaScript
-            echo "<script>
-                alert('Modelo cadastrado com sucesso!');
-                window.location.href = '../cadastroCategoria.php';
-            </script>";
+            echo "Modelo cadastrado com sucesso!";
+                
+            
         } else {
             echo "<script>
                 alert('Erro ao cadastrar fornecedor!');

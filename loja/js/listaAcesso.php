@@ -9,7 +9,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Consulta todos os registros da tabela (agora com campo correto)
-    $sql = "SELECT id, niv_acesso, obs FROM tb_acesso ORDER BY id ASC";
+    $sql = "SELECT id, niv_acesso, obs FROM tb_acesso ORDER BY  niv_acesso ASC";
     $stmt = $pdo->query($sql);
     $acessos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

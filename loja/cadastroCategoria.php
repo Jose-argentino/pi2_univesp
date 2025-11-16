@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/geral.css">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="css/lista.css">
     <link rel="stylesheet" href="css/footerExterno.css">
     <title>Cadastro de Empresas</title>
 </head>
@@ -28,20 +29,28 @@
     <main>
         <h2>Cadastro de Categoria</h2>
 
-        <form id="form" action="php/processaCadastroCategoria.php" method="POST">
+        <form id="form">
 
-            <label>Categoria</label><br>
-            <input type="text" name="categoria" required><br><br>
+    <input type="hidden" id="id_categoria" name="id">
 
-            <label>Observações:</label><br>
-            <textarea name="obs"></textarea><br><br>
+    <label>Categoria</label><br>
+    <input type="text" id="categoria" name="categoria" required><br><br>
 
-            <button class="btnCadastrar" type="submit">Cadastrar</button>
-        </form>
+    <label>Observações:</label><br>
+    <textarea id="obs" name="obs"></textarea><br><br>
 
-        <hr>
+    <button type="submit" class="btnCadastrar" id="btnSalvar">Cadastrar</button>
+
+    <button type="button" class="btnCadastrar" id="btnCancelarEdicao" onclick="limparFormulario()" style="display:none;">
+        Cancelar
+    </button>
+
+</form>
+
+
+        
         <h2>Lista de Categorias</h2>
-        <div id="listaCategorias"></div>
+        <div id="carregarLista"></div>
 
     </main>
 
@@ -52,40 +61,125 @@
     </footer>
 
     <script>
-    //Funções de Listagem
-        
-        async function listaCategorias() {
-            try {
-                const resposta = await fetch('js/listaAcesso.php');
-                const acessos = await resposta.json();
+        //LIMPAR FORMULÁRIO
+        function limparFormulario() {
+            document.getElementById('id_categoria').value = '';
+            document.getElementById('categoria').value = '';
+            document.getElementById('obs').value = '';
+            document.getElementById('btnSalvar').innerText = 'Cadastrar';
+            document.getElementById('btnCancelarEdicao').style.display = 'none';
+            document.querySelector('main h2').innerText = 'Cadastro de Categoria';
+        }
 
-                const divLista = document.getElementById('listaAcessos');
+        // EDITAR CATEGORIA 
+        async function editarCategoria(id) {
+            try {
+                const resposta = await fetch('js/listaCategoriaBuscar.php?id=' + id);
+                const categoria = await resposta.json();
+
+                if (categoria && categoria.id) {
+
+                    document.getElementById('id_categoria').value = categoria.id;
+                    document.getElementById('categoria').value = categoria.categoria;
+                    document.getElementById('obs').value = categoria.obs || '';
+
+                    document.getElementById('btnSalvar').innerText = 'Salvar Alterações';
+                    document.getElementById('btnCancelarEdicao').style.display = 'inline-block';
+                    document.querySelector('main h2').innerText = 'Editando Categoria (ID: ' + categoria.id + ')';
+
+                    document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
+
+                } else {
+                    alert('Erro ao buscar dados da categoria.');
+                }
+            } catch (erro) {
+                console.error('Erro ao carregar dados:', erro);
+                alert('Erro ao carregar dados.');
+            }
+        }
+
+        //  SUBMIT DO FORMULÁRIO
+        document.getElementById('form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const id_categoria = document.getElementById('id_categoria').value;
+
+            const url = id_categoria
+                ? 'php/atualizaCategoria.php'
+                : 'php/processaCadastroCategoria.php';
+
+            try {
+                const resposta = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const resultado = await resposta.text();
+                alert(resultado);
+
+                limparFormulario();
+                carregarLista();
+
+            } catch (erro) {
+                console.error('Erro ao processar formulário:', erro);
+                alert('Erro ao tentar processar a operação.');
+            }
+        });
+
+        // EXCLUIR
+        async function excluirCategoria(id) {
+            if (confirm('Tem certeza que deseja excluir esta categoria?')) {
+                try {
+                    const resposta = await fetch('js/listaCategoriaExcluir.php?id=' + id);
+                    const resultado = await resposta.json();
+
+                    if (resultado.sucesso) {
+                        alert(resultado.sucesso);
+                    } else {
+                        alert(resultado.erro || 'Erro desconhecido ao excluir.');
+                    }
+
+                    carregarLista();
+
+                } catch (erro) {
+                    console.error('Erro na exclusão:', erro);
+                    alert('Erro ao excluir categoria.');
+                }
+            }
+        }
+
+        //  CARREGAR LISTA
+        async function carregarLista() {
+            try {
+                const resposta = await fetch('js/listaCategoria.php');
+                const categorias = await resposta.json();
+
+                const divLista = document.getElementById('carregarLista');
                 divLista.innerHTML = '';
 
-                if (acessos.length === 0) {
-                    divLista.innerHTML = '<p>Nenhum nível de acesso cadastrado.</p>';
+                if (categorias.length === 0) {
+                    divLista.innerHTML = '<p>Nenhuma categoria cadastrada.</p>';
                     return;
                 }
 
-                // Cria uma tabela
                 let tabela = `
                     <table border="1" cellpadding="8" cellspacing="0">
                         <tr>
-                            <th>Nível de Acesso</th>
+                            <th>Categoria</th>
                             <th class="textoGrande">Observações</th>
                             <th>Ações</th>
                         </tr>
                 `;
 
-                // Percorre os registros e monta as linhas
-                acessos.forEach(acesso => {
+                categorias.forEach(cat => {
                     tabela += `
                         <tr>
-                            <td>${acesso.niv_acesso}</td>
-                            <td class="textoGrande">${acesso.obs || ''}</td>
+                            <td>${cat.categoria}</td>
+                            <td class="textoGrande">${cat.obs || ''}</td>
                             <td>
-                                <button onclick="editarAcesso(${acesso.id})">✏️ Editar</button> 
-                                <button onclick="excluirAcesso(${acesso.id})">🗑️ Excluir</button>
+                                <button onclick="editarCategoria(${cat.id})">✏️ Editar</button>
+                                <button onclick="excluirCategoria(${cat.id})">🗑️ Excluir</button>
                             </td>
                         </tr>
                     `;
@@ -95,10 +189,16 @@
                 divLista.innerHTML = tabela;
 
             } catch (erro) {
-                console.error('Erro ao carregar acessos:', erro);
-                // ...
+                console.error('Erro ao carregar lista:', erro);
             }
-        }    
+        }
+
+        //  AO ABRIR A PÁGINA 
+        window.onload = function() {
+            limparFormulario();
+            carregarLista();
+        };
     </script>
+
 </body>
 </html>

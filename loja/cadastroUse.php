@@ -3,13 +3,12 @@
     include "php/partes/conexao.php";
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><!-- Arquivo CSS externo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/geral.css">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/cadastro.css">
@@ -20,39 +19,38 @@
 <body>
 
     <header>
-        <?php 
-            include "php/partes/menuInterno.php"
-        ?>
+        <?php include "php/partes/menuInterno.php"; ?>
     </header>
 
     <main>
         <h2>Cadastro de Usuário</h2>
 
-        <form id="form" action="php/processa_cadastro.php" method="POST">
-            <label>Nome:</label><br>
-            <input type="text" name="nome"  required><br><br>
+        <form id="form" action="php/processaCadastroUse.php" method="POST">
 
-            <label>Sobrenome:</label><br>
-            <input type="text" name="sobreNome"  required><br><br>
+            <label>Nome:</label>
+            <input type="text" name="nome" required>
 
-            <label>Senha:</label><br>
-            <input type="password" name="senha"  required><br><br>
+            <label>Sobrenome:</label>
+            <input type="text" name="sobreNome" required>
 
-            <label>CPF:</label><br>
-            <input type="text" name="cpf" maxlength="11" required><br><br>
+            <label>Senha:</label>
+            <input type="password" name="senha" required>
 
-            <label>Nível de Acesso:</label><br>
+            <label>CPF:</label>
+            <input type="text" name="cpf" maxlength="11" required>
+
+            <label>Nível de Acesso:</label>
             <select name="nivel_acesso" required>
                 <option value="">Selecione</option>
                 <?php
                     try {
-                        $sql = "SELECT id, niv_acesso FROM tb_acesso";
+                        $sql = "SELECT id, niv_acesso FROM tb_acesso ORDER BY niv_acesso ASC";
                         $stmt = $conn->query($sql);
                         $niveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         if ($niveis) {
                             foreach ($niveis as $linha) {
-                                echo "<option value='" . htmlspecialchars($linha['id']) . "'>" . htmlspecialchars($linha['niv_acesso']) . "</option>";
+                                echo "<option value='{$linha['id']}'>" . htmlspecialchars($linha['niv_acesso']) . "</option>";
                             }
                         } else {
                             echo "<option value=''>Nenhum nível encontrado</option>";
@@ -63,32 +61,36 @@
                 ?>
             </select>
 
-            <label>Email:</label><br>
-            <input type="email" name="email" maxlength="50" required><br><br>
+            <label>Email:</label>
+            <input type="email" name="email" maxlength="50" required>
 
-            <label>Telefone:</label><br>
-            <input type="text" name="telefone" maxlength="20"><br><br>
+            <label>Telefone:</label>
+            <input type="text" name="telefone" maxlength="20">
 
-            <label>Endereço:</label><br>
-            <textarea name="endereco"></textarea><br><br>
+            <label>Endereço:</label>
+            <textarea name="endereco"></textarea>
 
-            <label>Observações:</label><br>
-            <textarea name="obs"></textarea><br><br>
+            <label>Observações:</label>
+            <textarea name="obs"></textarea>
 
-            <label>Status:</label><br>
+            <label>Status:</label>
             <select name="status_usuario">
                 <option value="1">Ativo</option>
                 <option value="0">Inativo</option>
-            </select><br><br>
+            </select>
 
             <button class="btnCadastrar" type="submit">Cadastrar</button>
         </form>
+
+        <h2>Lista de usuarios</h2>
+        <div id="carregarLista"></div>
+
     </main>
 
-        <footer>
-            <?php
-                include "php/partes/footerInterno.php";
-            ?>  
-        </footer>
+    <footer>
+        <?php include "php/partes/footerInterno.php"; ?>  
+    </footer>
+
+
 </body>
 </html>
