@@ -24,94 +24,75 @@
 
     <main>
        <main>
-<h2>Cadastro de Usuário</h2>
+            <h2>Cadastro de Usuário</h2>
 
+            <form id="form" action="php/processaCadastroUse.php" method="POST">
 
-<form id="form" action="php/processaCadastroUse.php" method="POST">
+            <input type="hidden" id="id_usuario" name="id_usuario" value="">
+            <label>Nome:</label>
 
+            <input id="nome" type="text" name="nome" required>
+            <label>Sobrenome:</label>
 
-<input type="hidden" id="id_usuario" name="id_usuario" value="">
+            <input id="sobreNome" type="text" name="sobreNome" required>
+            <label>Senha:</label>
 
+            <input id="senha" type="password" name="senha">
+            <label>CPF:</label>
 
-<label>Nome:</label>
-<input id="nome" type="text" name="nome" required>
+            <input id="cpf" type="text" name="cpf" maxlength="11" required>
+            <label>Nível de Acesso:</label>
 
+            <select id="nivel_acesso" name="nivel_acesso" required>
+            <option value="">Selecione</option>
+                <?php
+                try {
+                $sql = "SELECT id, niv_acesso FROM tb_acesso ORDER BY niv_acesso ASC";
+                $stmt = $conn->query($sql);
+                $niveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($niveis) {
+                foreach ($niveis as $linha) {
+                echo "<option value='".htmlspecialchars($linha['id'])."'>".htmlspecialchars($linha['niv_acesso'])."</option>";
+                }
+                }
+                } catch (PDOException $e) {
+                echo "<option value=''>Erro ao carregar níveis</option>";
+                }
+                ?>
+            </select>
 
-<label>Sobrenome:</label>
-<input id="sobreNome" type="text" name="sobreNome" required>
+            <label>Email:</label>
+            <input id="email" type="email" name="email" maxlength="50" required>
 
+            <label>Telefone:</label>
+            <input id="telefone" type="text" name="telefone" maxlength="20">
 
-<label>Senha:</label>
-<input id="senha" type="password" name="senha">
+            <label>Endereço:</label>
+            <textarea id="endereco" name="endereco"></textarea>
 
+            <label>Observações:</label>
+            <textarea id="obs" name="obs"></textarea>
 
-<label>CPF:</label>
-<input id="cpf" type="text" name="cpf" maxlength="11" required>
+            <label>Status:</label>
+            <select id="status_usuario" name="status_usuario">
+                <option value="1">Ativo</option>
+                <option value="0">Inativo</option>
+            </select>
 
+            <button class="btnCadastrar" type="submit" id="btnSalvar">Cadastrar</button>
+            <button type="button" class="btnCadastrar" id="btnCancelarEdicao" style="display: none;" onclick="limparFormulario()">Cancelar Edição</button>
+        </form>
 
-<label>Nível de Acesso:</label>
-<select id="nivel_acesso" name="nivel_acesso" required>
-<option value="">Selecione</option>
-<?php
-try {
-$sql = "SELECT id, niv_acesso FROM tb_acesso ORDER BY niv_acesso ASC";
-$stmt = $conn->query($sql);
-$niveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        <h2>Lista de usuários</h2>
+        <div id="carregarLista"></div>
 
+    </main>
 
-if ($niveis) {
-foreach ($niveis as $linha) {
-echo "<option value='".htmlspecialchars($linha['id'])."'>".htmlspecialchars($linha['niv_acesso'])."</option>";
-}
-}
-} catch (PDOException $e) {
-echo "<option value=''>Erro ao carregar níveis</option>";
-}
-?>
-</select>
+    <footer>
+        <?php include "php/partes/footerInterno.php"; ?>
+    </footer>
 
-
-<label>Email:</label>
-<input id="email" type="email" name="email" maxlength="50" required>
-
-
-<label>Telefone:</label>
-<input id="telefone" type="text" name="telefone" maxlength="20">
-
-
-<label>Endereço:</label>
-<textarea id="endereco" name="endereco"></textarea>
-
-
-<label>Observações:</label>
-<textarea id="obs" name="obs"></textarea>
-
-
-<label>Status:</label>
-<select id="status_usuario" name="status_usuario">
-<option value="1">Ativo</option>
-<option value="0">Inativo</option>
-</select>
-
-
-<button class="btnCadastrar" type="submit" id="btnSalvar">Cadastrar</button>
-<button type="button" class="btnCadastrar" id="btnCancelarEdicao" style="display: none;" onclick="limparFormulario()">Cancelar Edição</button>
-</form>
-
-
-<h2>Lista de usuários</h2>
-<div id="carregarLista"></div>
-
-
-</main>
-
-
-<footer>
-<?php include "php/partes/footerInterno.php"; ?>
-</footer>
-
-
-<script src="js/listaUse.js"></script>
+    <script src="js/listaUse.js"></script>
 
 </body>
 </html>
