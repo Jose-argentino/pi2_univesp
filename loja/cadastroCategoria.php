@@ -31,21 +31,21 @@
 
         <form id="form">
 
-    <input type="hidden" id="id_categoria" name="id">
+            <input type="hidden" id="id_categoria" name="id">
 
-    <label>Categoria</label><br>
-    <input type="text" id="categoria" name="categoria" required><br><br>
+            <label>Categoria</label><br>
+            <input type="text" id="categoria" name="categoria" required><br><br>
 
-    <label>Observações:</label><br>
-    <textarea id="obs" name="obs"></textarea><br><br>
+            <label>Observações:</label><br>
+            <textarea id="obs" name="obs"></textarea><br><br>
 
-    <button type="submit" class="btnCadastrar" id="btnSalvar">Cadastrar</button>
+            <button type="submit" class="btnCadastrar" id="btnSalvar">Cadastrar</button>
 
-    <button type="button" class="btnCadastrar" id="btnCancelarEdicao" onclick="limparFormulario()" style="display:none;">
-        Cancelar
-    </button>
+            <button type="button" class="btnCadastrar" id="btnCancelarEdicao" onclick="limparFormulario()" style="display:none;">
+                Cancelar
+            </button>
 
-</form>
+        </form>
 
 
         
@@ -82,7 +82,6 @@
                     document.getElementById('id_categoria').value = categoria.id;
                     document.getElementById('categoria').value = categoria.categoria;
                     document.getElementById('obs').value = categoria.obs || '';
-
                     document.getElementById('btnSalvar').innerText = 'Salvar Alterações';
                     document.getElementById('btnCancelarEdicao').style.display = 'inline-block';
                     document.querySelector('main h2').innerText = 'Editando Categoria (ID: ' + categoria.id + ')';
