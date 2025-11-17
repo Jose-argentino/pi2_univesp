@@ -1,5 +1,5 @@
 <?php
-    // php/processaEstoque.php
+    
     include "partes/validaSession.php";
     include "partes/conexao.php";
 
@@ -9,7 +9,7 @@
         $db = isset($pdo) ? $pdo : $conn;
         
         // Dados recebidos do formulário
-        $cod_produto        = $_POST['cod_produto']; /* CORRIGIDO: de modelo para 'cod_produto' */
+        $cod_produto        = $_POST['cod_produto']; 
         $quantidade         = $_POST['quantidade'];  /* CORRIGIDO: de quantidade_atual para 'quantidade' */
         $estoque_minimo     = $_POST['estoque_minimo'];
         $valor_venda        = $_POST['valor_venda'];

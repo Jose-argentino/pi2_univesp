@@ -1,9 +1,9 @@
 <?php
-// estoque.php
-include "php/partes/validaSession.php";
-include "php/partes/conexao.php";
-// Assumimos que $conn ou $pdo está definido em conexao.php
-$db = isset($pdo) ? $pdo : $conn;
+    
+    include "php/partes/validaSession.php";
+    include "php/partes/conexao.php";
+    
+    $db = isset($pdo) ? $pdo : $conn;
 ?>
 
 <!DOCTYPE html>
@@ -29,72 +29,72 @@ $db = isset($pdo) ? $pdo : $conn;
         <h2 id="tituloPagina">Lançamento de Estoque</h2>
 
        <form id="formEstoque" action="php/processaEstoque.php" method="POST">
-    <input type="hidden" id="id" name="id" value="">
+            <input type="hidden" id="id" name="id" value="">
 
-    <label>Modelo (Fornecedor / Código / Título):</label><br>
-    <select name="cod_produto" id="cod_produto" required class="input">
-        <option value="">Selecione o Modelo</option>
-        <?php
-            // Preenche o SELECT de MODELOS (com JOIN para exibir Fornecedor e Código)
-            try {
-                // Certifique-se de que $db está definido no topo do seu estoque.php
-                $db = isset($pdo) ? $pdo : $conn;
+            <label>Modelo (Fornecedor / Código / Título):</label><br>
+            <select name="cod_produto" id="cod_produto" required class="input">
+                <option value="">Selecione o Modelo</option>
+                <?php
+                 
+                    try {
+                        
+                        $db = isset($pdo) ? $pdo : $conn;
 
-                $sql = "SELECT 
-                            m.id, 
-                            m.partNumber, 
-                            m.titulo, 
-                            f.fornecedor AS fornecedor_nome
-                        FROM tb_modelo m
-                        JOIN tb_fornecedor f ON m.fornecedor = f.id
-                        ORDER BY f.fornecedor, m.titulo ASC";
-                $stmt = $db->query($sql);
-                $modelos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $sql = "SELECT 
+                                    m.id, 
+                                    m.partNumber, 
+                                    m.titulo, 
+                                    f.fornecedor AS fornecedor_nome
+                                FROM tb_modelo m
+                                JOIN tb_fornecedor f ON m.fornecedor = f.id
+                                ORDER BY f.fornecedor, m.titulo ASC";
+                        $stmt = $db->query($sql);
+                        $modelos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                if ($modelos) {
-                    foreach ($modelos as $linha) {
-                        $display = htmlspecialchars("{$linha['fornecedor_nome']} / {$linha['partNumber']} / {$linha['titulo']}");
-                        echo "<option value='" . htmlspecialchars($linha['id']) . "'>{$display}</option>";
+                        if ($modelos) {
+                            foreach ($modelos as $linha) {
+                                $display = htmlspecialchars("{$linha['fornecedor_nome']} / {$linha['partNumber']} / {$linha['titulo']}");
+                                echo "<option value='" . htmlspecialchars($linha['id']) . "'>{$display}</option>";
+                            }
+                        } else {
+                            echo "<option value=''>Nenhum modelo cadastrado</option>";
+                        }
+                    } catch (PDOException $e) {
+                        // Não exiba o erro diretamente ao usuário, apenas no log
+                        error_log("Erro ao carregar modelos: " . $e->getMessage());
+                        echo "<option value=''>Erro ao carregar modelos</option>";
                     }
-                } else {
-                    echo "<option value=''>Nenhum modelo cadastrado</option>";
-                }
-            } catch (PDOException $e) {
-                // Não exiba o erro diretamente ao usuário, apenas no log
-                error_log("Erro ao carregar modelos: " . $e->getMessage());
-                echo "<option value=''>Erro ao carregar modelos</option>";
-            }
-        ?>
-    </select><br><br>
+                ?>
+            </select><br><br>
 
-    <div class="form-row">
-        <div class="form-group">
-            <label>Quantidade Atual:</label><br>
-            <input type="number" id="quantidade" name="quantidade" required class="input" min="0"><br><br>
-        </div>
-        
-        <div class="form-group">
-            <label>Estoque Mínimo:</label><br>
-            <input type="number" id="estoque_minimo" name="estoque_minimo" required class="input" min="0"><br><br>
-        </div>
-    </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Quantidade Atual:</label><br>
+                    <input type="number" id="quantidade" name="quantidade" required class="input" min="0"><br><br>
+                </div>
+                
+                <div class="form-group">
+                    <label>Estoque Mínimo:</label><br>
+                    <input type="number" id="estoque_minimo" name="estoque_minimo" required class="input" min="0"><br><br>
+                </div>
+            </div>
 
-    <div class="form-row">
-        <div class="form-group">
-            <label>Valor de Venda (R$):</label><br>
-            <input type="number" id="valor_venda" name="valor_venda" required class="input" step="0.01" min="0"><br><br>
-        </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Valor de Venda (R$):</label><br>
+                    <input type="number" id="valor_venda" name="valor_venda" required class="input" step="0.01" min="0"><br><br>
+                </div>
 
-        <div class="form-group">
-            <label>Dedução (%):</label><br>
-            <input type="number" id="desconto" name="desconto" required class="input" step="0.01" min="0" max="100" value="0.00"><br><br>
-        </div>
-    </div>
+                <div class="form-group">
+                    <label>Dedução (%):</label><br>
+                    <input type="number" id="desconto" name="desconto" required class="input" step="0.01" min="0" max="100" value="0.00"><br><br>
+                </div>
+            </div>
 
-    <button class="btnCadastrar" type="submit" id="btnSalvar">Lançar Estoque</button>
-    <button type="button" class="btnCadastrar" id="btnCancelar" style="display:none;" onclick="limparFormulario()">Cancelar edição</button>
-</form>
-        
+            <button class="btnCadastrar" type="submit" id="btnSalvar">Lançar Estoque</button>
+            <button type="button" class="btnCadastrar" id="btnCancelar" style="display:none;" onclick="limparFormulario()">Cancelar edição</button>
+        </form>
+                
         <h2 style="margin-top: 30px;">Controle de Estoque</h2>
 
         <div class="search-container">
