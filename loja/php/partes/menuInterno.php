@@ -12,7 +12,7 @@
     <nav id="menu">
         <ul>
             <li><a href="home.php">Inicio</a></li>
-            <li><a href="#">Vendas</a></li>
+            <li><a href="vendas.php">Vendas</a></li>
             <li><a href="#">Entradas</a></li>
             <li><a href="estoque.php">Estoque</a></li>
             <li><a href="cadastros.php">Cadastros</a></li>
@@ -23,3 +23,15 @@
         <p>Bem-vindo, <strong><?php echo htmlspecialchars($_SESSION['nome']); ?></strong>!</p>
 
     </nav>
+</div>
+<!-- scripit para navBar -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector("#menu");
+
+    menuToggle.addEventListener("click", () => {
+        menu.classList.toggle("active");
+    });
+});
+</script>

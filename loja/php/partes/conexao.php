@@ -17,5 +17,4 @@
   } catch (PDOException $e) {
       // Caso ocorra erro, exibe a mensagem
       echo "Falha na conexão: " . $e->getMessage();
-}
-?>
+    }
