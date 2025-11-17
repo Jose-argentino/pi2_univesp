@@ -21,14 +21,11 @@
 <body>
     <div id="container">
         
-    <header>
-        <?php 
-            include "php/partes/menuInterno.php"
-        ?>
-
-    </div>
-        
-    </header>
+        <header>
+            <?php 
+                include "php/partes/menuInterno.php"
+            ?>   
+        </header>
 
         <main class="produtos-container">
             <h2 class="titulo-secao">Produtos à Venda</h2>

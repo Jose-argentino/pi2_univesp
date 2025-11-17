@@ -16,14 +16,14 @@ main{
     width: 100%;
 }
 
-#form, #formEmpresa{
+#form, #formEmpresa, #formModelo{
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
 }
 
-#form label, #formEmpresa label {
+#form label, #formEmpresa label, #formModelo label {
     font-weight: bold;
     margin: 0;
     gap: 0;
@@ -31,7 +31,7 @@ main{
     text-align: center;
 }
 
-#form input, #formEmpresa input {
+#form input, #formEmpresa input, #formModelo input {
     width: 100%;
     padding: 10px;
     border-radius: var(--form-border-radius);
@@ -41,7 +41,7 @@ main{
     border: 2px solid var(--cor-fonte-5);
 }
 
-#form textarea, #formEmpresa textarea{
+#form textarea, #formEmpresa textarea, #formModelo textarea{
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -52,7 +52,7 @@ main{
     min-height: 25px;  
 }
 
-#form select, #formEmpresa select{
+#form select, #formEmpresa select, #formModelo select{
     min-width: 50vh;
     padding: 10px;
     text-align: center;

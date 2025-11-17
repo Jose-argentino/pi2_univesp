@@ -14,7 +14,7 @@
             <li><a href="home.php">Inicio</a></li>
             <li><a href="#">Vendas</a></li>
             <li><a href="#">Entradas</a></li>
-            <li><a href="#">Estoque</a></li>
+            <li><a href="estoque.php">Estoque</a></li>
             <li><a href="cadastros.php">Cadastros</a></li>
             <li><a href="php/logout.php">Sair</a></li>
 
