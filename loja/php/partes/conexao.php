@@ -2,7 +2,7 @@
   // Configurações do servidor de banco de dados
   $servername = "localhost";  // Host (localhost porque está no XAMPP)
   $username   = "root";       // Usuário padrão do MySQL no XAMPP
-  $password   = "";           // Senha (em branco por padrão no XAMPP)
+  $password   = "123456";           // Senha (em branco por padrão no XAMPP)
   $database   = "db_loja_roupa"; // Nome do banco de dados que você criou
 
   try {
