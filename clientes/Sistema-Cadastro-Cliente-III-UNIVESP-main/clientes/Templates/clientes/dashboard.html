@@ -1,0 +1,278 @@
+{% extends 'clientes/index.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="container mt-4">
+
+    <!-- KPI CARDS -->
+    <div class="row mb-4 g-4">
+
+         <!-- Total -->
+    <div class="col-md-4">
+        <div class="card dashboard-card text-center p-3 shadow-sm">
+            <h6><i class="bi bi-people"></i> Total de Clientes</h6>
+            <h2>{{ total_clientes }}</h2>
+        </div>
+    </div>
+
+    <!-- Crescimento -->
+    <div class="col-md-4">
+        <div class="card dashboard-card text-center p-3 shadow-sm">
+            <div class="d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">
+                    <i class="bi bi-graph-up"></i> Crescimento
+                </h6>
+                <button class="btn btn-sm btn-outline-secondary" onclick="toggleCrescimentoKPI(event)">
+                    Ocultar
+                </button>
+            </div>
+            <div id="kpiCrescimento" class="mt-2">
+                {% if crescimento_percentual > 0 %}
+                    <h2 class="text-success">+{{ crescimento_percentual }}%</h2>
+                {% elif crescimento_percentual < 0 %}
+                    <h2 class="text-danger">{{ crescimento_percentual }}%</h2>
+                {% else %}
+                    <h2 class="text-secondary">0%</h2>
+                {% endif %}
+
+                <small class="text-muted">vs mês anterior</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% if pagamento_mais_usado %}
+    <div class="alert alert-info text-center shadow-sm">
+        Forma mais utilizada: <strong>{{ pagamento_mais_usado }}</strong>
+    </div>
+    {% endif %}
+
+    <!-- FILTROS -->
+    <div class="text-center mb-4">
+        <button class="btn btn-outline-primary btn-sm" onclick="carregarDados()">Todos</button>
+        <button class="btn btn-outline-primary btn-sm" onclick="carregarDados(7)">7 dias</button>
+        <button class="btn btn-outline-primary btn-sm" onclick="carregarDados(30)">30 dias</button>
+    </div>
+
+    <!-- GRÁFICOS -->
+    <div class="row g-4">
+
+        <!-- Linha -->
+    <div class="col-md-6">
+        <div class="card dashboard-card p-3">
+
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Crescimento de Clientes</h6>
+                <button class="btn btn-sm btn-outline-secondary" onclick="toggleCrescimento(event)">
+                    Ocultar
+                </button>
+            </div>
+
+        <div id="containerCrescimento">
+            <canvas id="graficoCrescimento"></canvas>
+        </div>
+
+    </div>
+</div>
+
+        <!-- Barra -->
+        <div class="col-md-6">
+            <div class="card dashboard-card p-3">
+                <h6 class="text-center mb-3">Clientes por Mês</h6>
+                <canvas id="graficoBarra"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Pizza -->
+    <div class="row mt-4">
+        <div class="col-md-6 mx-auto">
+            <div class="card dashboard-card p-3">
+                <h6 class="text-center mb-3">Formas de Pagamento</h6>
+
+                {% if tem_dados_pagamento %}
+                    <canvas id="graficoPizza"></canvas>
+                {% else %}
+                    <div class="text-center text-muted p-4">
+                        <i class="bi bi-pie-chart fs-1"></i>
+                        <p class="mt-2 mb-0">Nenhum dado de pagamento</p>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+function toggleCrescimento(event) {
+    const el = document.getElementById('containerCrescimento');
+    const btn = event.target;
+
+    if (el.style.display === 'none') {
+        el.style.display = 'block';
+        btn.innerText = 'Ocultar';
+
+        if (graficoLinha) graficoLinha.resize(); 
+    } else {
+        el.style.display = 'none';
+        btn.innerText = 'Mostrar';
+    }
+}
+
+function toggleCrescimentoKPI(event) {
+    const el = document.getElementById('kpiCrescimento');
+    const btn = event.target;
+
+    if (el.style.display === 'none') {
+        el.style.display = 'block';
+        btn.innerText = 'Ocultar';
+    } else {
+        el.style.display = 'none';
+        btn.innerText = 'Mostrar';
+    }
+}
+
+</script>
+
+<script>
+
+let graficoLinha = null;
+let graficoBarra = null;
+let graficoPizza = null;
+
+async function carregarDados(dias = '') {
+
+    document.body.style.cursor = 'wait';
+
+    const url = dias ? `/api/dashboard/?dias=${dias}` : '/api/dashboard/';
+
+    try {
+        const response = await fetch(url, {
+            credentials: 'include'
+        });
+
+        if (!response.ok) throw new Error('Erro na API');
+
+        const clientes = await response.json();
+
+        const crescimento = {};
+        const pagamentos = {};
+
+        clientes.forEach(cliente => {
+            const data = new Date(cliente.data_criacao);
+            const mes = data.toLocaleString('pt-BR', { month: 'short', year: 'numeric' });
+
+            crescimento[mes] = (crescimento[mes] || 0) + 1;
+
+            if (cliente.pagamento) {
+                pagamentos[cliente.pagamento] = (pagamentos[cliente.pagamento] || 0) + 1;
+            }
+        });
+
+        const labels = Object.keys(crescimento).sort(
+            (a, b) => new Date(a) - new Date(b)
+        );
+        const dados = Object.values(crescimento);
+
+        const labelsPizza = Object.keys(pagamentos);
+        const dadosPizza = Object.values(pagamentos);
+
+        // destruir gráficos antigos
+        if (graficoLinha) graficoLinha.destroy();
+        if (graficoBarra) graficoBarra.destroy();
+        if (graficoPizza) graficoPizza.destroy();
+
+        // 📈 Linha
+        graficoLinha = new Chart(document.getElementById('graficoCrescimento'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Clientes',
+                    data: dados,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59,130,246,0.2)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+
+        // 📊 Barra
+        graficoBarra = new Chart(document.getElementById('graficoBarra'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Clientes por mês',
+                    data: dados,
+                    backgroundColor: '#22c55e'
+                }]
+            },
+            options: {
+                animation: {
+                    duration: 1200,
+                    easing: 'easeOutBounce'
+                }
+            }
+        });
+
+        // 🥧 Pizza
+        if (labelsPizza.length > 0) {
+            graficoPizza = new Chart(document.getElementById('graficoPizza'), {
+                type: 'pie',
+                data: {
+                    labels: labelsPizza,
+                    datasets: [{
+                        data: dadosPizza,
+                        backgroundColor: [
+                            '#3b82f6',
+                            '#22c55e',
+                            '#f59e0b',
+                            '#ef4444',
+                            '#8b5cf6'
+                        ]
+                    }]
+                },
+                options: {
+                    animation: {
+                        duration: 1400,
+                        easing: 'easeOutCubic'
+                    }
+                }
+            });
+        }
+
+    } catch (error) {
+        console.error(error);
+    } finally {
+        document.body.style.cursor = 'default';
+    }
+}
+// carregar ao abrir
+carregarDados();
+
+</script>
+
+{% endblock %}

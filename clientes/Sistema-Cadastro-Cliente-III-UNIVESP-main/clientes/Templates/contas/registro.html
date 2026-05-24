@@ -1,0 +1,80 @@
+{% extends 'clientes/index.html' %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles/pagina_registro.css' %}">
+{% endblock %}
+
+{% block title %}Registrar{% endblock %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center align-items-center">
+
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0 p-4">
+
+            <h2 class="text-center mb-4 fw-bold">Criar Conta</h2>
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                <!-- Usuário -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Usuário</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-person"></i>
+                        </span>
+                        {{ form.username|add_class:"form-control"|attr:"placeholder:Digite seu usuário" }}
+                    </div>
+                </div>
+
+                <!-- Senha -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Senha</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-lock"></i>
+                        </span>
+                        {{ form.password1|add_class:"form-control"|attr:"placeholder:Digite sua senha" }}
+                    </div>
+                </div>
+
+                <!-- Confirmar senha -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Confirmar senha</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-shield-lock"></i>
+                        </span>
+                        {{ form.password2|add_class:"form-control"|attr:"placeholder:Confirme sua senha" }}
+                    </div>
+                </div>
+
+                <!-- Erros -->
+                {% if form.errors %}
+                    <div class="alert alert-danger py-2">
+                        Corrija os erros antes de continuar.
+                    </div>
+                {% endif %}
+
+                <!-- Botão -->
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-person-plus"></i> Criar Conta
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="text-center mt-3">
+            <p class="text-muted">
+                Já tem uma conta? 
+                <a href="{% url 'login' %}" class="fw-semibold">Fazer login</a>
+            </p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
